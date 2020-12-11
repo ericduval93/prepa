@@ -20,18 +20,18 @@ def ipv4_parser(ip_addr, ip_mask):
     bcas = [(addr[i] & mask[i]) | (255^mask[i]) for i in range(4)]
     host_id = [abs(network[i] - addr[i]) for i in range(4)]
 
-    return network, cidr, bcas, host_id
+    return '.'.join(map(str,network)), cidr, '.'.join(map(str,bcas)), '.'.join(map(str,host_id))
 
 if __name__ == '__main__':
 
     mynet, cidr, bcas, host_id = ipv4_parser( '192.168.50.1', '255.255.255.0' )
-    print("network = {}/{} - netmask = {} - hostid = {}".format('.'.join(map(str,mynet)),cidr,'.'.join(map(str,bcas)),'.'.join(map(str,host_id))))
+    print("network = {}/{} - netmask = {} - hostid = {}".format(mynet,cidr,bcas,host_id))
 
     mynet, cidr, bcas, host_id = ipv4_parser( '192.168.50.129', '255.255.255.192' )
-    print("network = {}/{} - netmask = {} - hostid = {}".format('.'.join(map(str,mynet)),cidr,'.'.join(map(str,bcas)),'.'.join(map(str,host_id))))
+    print("network = {}/{} - netmask = {} - hostid = {}".format(mynet,cidr,bcas,host_id))
 
     mynet, cidr, bcas, host_id = ipv4_parser( '65.196.188.53', '255.255.240.0' )
-    print("network = {}/{} - netmask = {} - hostid = {}".format('.'.join(map(str,mynet)),cidr,'.'.join(map(str,bcas)),'.'.join(map(str,host_id))))
+    print("network = {}/{} - netmask = {} - hostid = {}".format(mynet,cidr,bcas,host_id))
 
 exit( 0 )
 
